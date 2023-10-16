@@ -2,4 +2,4 @@
 docker keycloak eureka springboot postgres
 
 ## Run it
-docker-compose up --build
+`docker-compose up --build`
