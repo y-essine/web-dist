@@ -1,0 +1,60 @@
+version: '3.4'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: on-failure
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "5050:5050"
+    restart: on-failure
+    environment:
+      #overriding spring application.properties
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+      - keycloak-client.server-url=http://172.30.240.1:18080/auth # use host name or ip of the host machine
+    depends_on:
+      - eureka-server
+  eureka-server:
+    build:
+      context: ./eureka-server
+    ports:
+      - "8761:8761"
+    restart: on-failure
+  reservation-service:
+    build: ./Candidate
+    ports:
+      - 8088:8088
+    image: reservation-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+      - keycloak-client.server-url=http://172.30.240.1:18080/auth 
+    depends_on:
+      - eureka-server
+  node-app:
+    build:
+      context: ./user-auth
+    ports:
+      - 3030:3030
+    image: node-app-image
+    restart: on-failure
+    environment:
+      - MONGO_URI=mongodb+srv://inesmsallem:30101999@cluster0.friepyw.mongodb.net/
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+      - keycloak-client.server-url=http://172.30.240.1:18080/auth 
+    depends_on:
+      - mongodb
+  front:
+    build:
+      context: ./cars
+    image: my-front-app
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+      - keycloak-client.server-url=http://172.30.240.1:18080/auth 
+    depends_on:
+      - node-app
