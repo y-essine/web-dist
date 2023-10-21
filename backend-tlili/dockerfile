@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 9090
-ADD target/annonce-vehicule-0.0.1-SNAPSHOT.jar annonce-vehicule-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","annonce-vehicule-0.0.1-SNAPSHOT.jar"]
+ADD target/annonce-docker.jar annonce-docker.jar
+ENTRYPOINT ["java","-jar","annonce-docker.jar"]

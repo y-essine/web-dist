@@ -73,6 +73,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>annonce-docker</finalName>
+
     </build>
     <repositories>
         <repository>

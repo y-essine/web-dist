@@ -9,10 +9,9 @@ services:
     build:
       context: ./api-gateway
     ports:
-      - "5050:5050"
+      - "1010:1010"
     restart: on-failure
     environment:
-      #overriding spring application.properties
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
       - keycloak-client.server-url=http://172.30.240.1:18080/auth # use host name or ip of the host machine
     depends_on:
@@ -24,7 +23,7 @@ services:
       - "8761:8761"
     restart: on-failure
   reservation-service:
-    build: ./Candidate
+    build: ./backend-ines
     ports:
       - 8088:8088
     image: reservation-service
@@ -46,7 +45,7 @@ services:
       - eureka-server  
 
   review-service:
-    build: ./belghith-ms
+    build: ./backend-belghith
     ports:
       - 8484:8484
     image: review-service
@@ -82,7 +81,7 @@ services:
       - mongodb
   front:
     build:
-      context: ./cars
+      context: ./frontend
     image: my-front-app
     ports:
       - "3000:3000"
