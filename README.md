@@ -43,3 +43,11 @@ temchi l nafs l ip aal navigateur kima lien hedha `http://`(ip)`:8080/api/consum
 tethallek login page w kol chay yemchi.
 
 theb todkhol page admin keycloak w taamel compte: `http://`(ip)`:18080/` b compte admin/admin
+
+## Fetch access token and refresh token from keycloak server
+Post a request to get an access token:
+
+`POST http://localhost:18080/auth/realms/spring-micro-main/protocol/openid-connect/token`  
+ `Content-Type: application/x-www-form-urlencoded`
+ 
+ `&client_id=spring-micro-gateway&username=dev&password=123&grant_type=password&client_secret=756b0558-018b-4809-b478-bd5b4995d325`
