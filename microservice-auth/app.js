@@ -7,7 +7,7 @@ const authRoutes = require('./routes/auth');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 9086;
 
 // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));

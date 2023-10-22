@@ -1,4 +1,0 @@
-FROM openjdk:8
-EXPOSE 9191
-ADD target/annonce-docker.jar annonce-docker.jar
-ENTRYPOINT ["java","-jar","annonce-docker.jar"]

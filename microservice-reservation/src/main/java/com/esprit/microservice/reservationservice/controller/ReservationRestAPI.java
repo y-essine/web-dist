@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/reservations")
+@RequestMapping(value = "/api/reservation")
 public class ReservationRestAPI {
     @Autowired
     private ReservationService reservationService;
 
-    @RequestMapping("/GetAllReservations")
+    @GetMapping("/all")
     public List<Reservation> getReservations() {
         return reservationService.getAllReservations();
     }
 
-    @PostMapping("/addReservation")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Reservation> createCandidat(@RequestBody Reservation reservation) {
         return new ResponseEntity<>(reservationService.addReservation(reservation), HttpStatus.OK);

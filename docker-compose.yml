@@ -50,26 +50,52 @@ services:
         POSTGRES_PASSWORD: password
       ports:
         - "5432:5432"
+  microservice-consumer:
+    build:
+      context: ./microservice-consumer
+    ports:
+      - "9080:9080"
+    restart: on-failure
+    environment:
+      #overriding spring application.properties
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+      - keycloak-client.server-url=http://172.28.93.16:18080/auth # use host name or ip of the host machine
+    depends_on:
+      - eureka-server
+  microservice-producer:
+    build:
+      context: ./microservice-producer
+    ports:
+      - "9081:9081"
+    restart: on-failure
+    environment:
+      #overriding spring application.properties
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+      - keycloak-client.server-url=http://172.28.93.16:18080/auth # use host name or ip of the host machine
+    depends_on:
+      - eureka-server
+  microservice-candidat:
+    build:
+      context: ./microservice-candidat
+    ports:
+      - "9082:9082"
+    restart: on-failure
+    environment:
+      #overriding spring application.properties
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+      - keycloak-client.server-url=http://172.28.93.16:18080/auth # use host name or ip of the host machine
+    depends_on:
+      - eureka-server
   microservice-reservation:
     build: ./microservice-reservation
     ports:
-      - 8088:8088
+      - 9083:9083
     image: reservation-service
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
       - keycloak-client.server-url=http://172.28.93.16:18080/auth 
     depends_on:
       - eureka-server
-  microservice-vehicules:
-    build: ./microservice-vehicules
-    ports:
-      - 9083:9083
-    image: vehicules-service
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
-      - keycloak-client.server-url=http://172.28.93.16:18080/auth 
-    depends_on:
-      - eureka-server  
   microservice-review:
     build: ./microservice-review
     ports:
@@ -84,18 +110,21 @@ services:
     depends_on:
       - db-mysql
       - eureka-server  
-  db-mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_DATABASE: carsharepro         
-      MYSQL_ROOT_PASSWORD: root
+  microservice-vehicules:
+    build: ./microservice-vehicules
     ports:
-     - "3306:3306"     
-  node-app:
+      - 9085:9085
+    image: vehicules-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+      - keycloak-client.server-url=http://172.28.93.16:18080/auth 
+    depends_on:
+      - eureka-server  
+  microservice-auth:
     build:
       context: ./microservice-auth
     ports:
-      - 9085:9085
+      - 9086:9086
     image: node-app-image
     restart: on-failure
     environment:
@@ -104,6 +133,13 @@ services:
       - keycloak-client.server-url=http://172.28.93.16:18080/auth 
     depends_on:
       - mongodb
+  db-mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: carsharepro         
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+     - "3306:3306"     
   mongodb:
     image: mongo
     ports:
@@ -120,7 +156,7 @@ services:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
       - keycloak-client.server-url=http://172.28.93.16:18080/auth 
     depends_on:
-      - node-app
+      - microservice-auth
   
 volumes:
     postgres_data:
