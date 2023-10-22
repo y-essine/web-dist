@@ -1,5 +1,19 @@
 version: '3.4'
 services:
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - "8081:8081"
+    container_name: nexus
+    user: "200:200"  # Specify the user and group IDs for the Nexus process
+    volumes:
+      - ./nexus-data:/nexus-data
+    command: ["sh", "-c", "chown -R 200:200 /nexus-data && exec /opt/sonatype/nexus/bin/nexus run"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://172.28.93.16:8081"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   api-gateway:
     build:
       context: ./api-gateway
