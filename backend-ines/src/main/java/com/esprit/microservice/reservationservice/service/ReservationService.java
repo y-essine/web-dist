@@ -1,5 +1,7 @@
-package com.esprit.microservice.candidateservice;
+package com.esprit.microservice.reservationservice.service;
 
+import com.esprit.microservice.reservationservice.entity.Reservation;
+import com.esprit.microservice.reservationservice.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

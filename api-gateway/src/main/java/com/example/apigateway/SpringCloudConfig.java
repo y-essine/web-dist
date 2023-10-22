@@ -8,22 +8,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringCloudConfig {
 
-    @Bean
-    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
-        return builder.routes()
-//Micro-service 1
-                .route(r -> r.path("/reservations/**")
-                        .uri("http://localhost:8088/")
-                )
+        @Bean
+        public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
+                return builder.routes()
+                                // Micro-service 1
+                                .route(r -> r.path("/reservations/**")
+                                                .uri("http://localhost:8088/"))
 
-//Micro-service 2
-                .route(r -> r.path("/annonce/**")
-                        .uri("http://localhost:9090/"))
+                                // Micro-service 2
+                                .route(r -> r.path("/annonce/**")
+                                                .uri("http://localhost:9191/"))
 
-//Micro-service 2
-                .route(r -> r.path("/review/**")
-                .uri("http://localhost:8484/"))
-                .build();
-    }
+                                // Micro-service 2
+                                .route(r -> r.path("/review/**")
+                                                .uri("http://localhost:8484/"))
+                                .build();
+        }
 
 }

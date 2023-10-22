@@ -36,7 +36,7 @@ services:
   vehicules-service:
     build: ./backend-tlili
     ports:
-      - 9090:9090
+      - 9191:9191
     image: vehicules-service
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
