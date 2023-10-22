@@ -42,6 +42,18 @@ services:
       - keycloak-client.server-url=http://172.28.93.16:18080/auth # use host name or ip of the host machine
     depends_on:
       - eureka-server
+  microservice-candidat:
+    build:
+      context: ./microservice-candidat
+    ports:
+      - "9082:9082"
+    restart: on-failure
+    environment:
+      #overriding spring application.properties
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+      - keycloak-client.server-url=http://172.28.93.16:18080/auth # use host name or ip of the host machine
+    depends_on:
+      - eureka-server
   keycloak:
     image: jboss/keycloak:11.0.0
     volumes:
