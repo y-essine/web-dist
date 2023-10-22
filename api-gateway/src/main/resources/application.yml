@@ -52,7 +52,13 @@ spring:
           filters:
             - TokenRelay=
             - RemoveRequestHeader=Cookie
-
+        - id: microservice-candidat
+          uri: lb://microservice-candidat
+          predicates:
+            - Path=/api/candidat/**
+          filters:
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
 eureka:
   client:
     serviceUrl:

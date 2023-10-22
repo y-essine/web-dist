@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-	@RequestMapping(method = RequestMethod.GET, value = "/api/produce/")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/produce")
 	public String getTokenDetails(@RequestHeader HttpHeaders headers) {
 		return headers.toString();
 	}
