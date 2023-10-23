@@ -7,6 +7,11 @@ const jwt = require('jsonwebtoken');
 function hashPassword(password, salt) {
   return crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
 }
+
+router.get('', async (req, res) => {
+    return res.status(200).json({ message: 'All users' });
+})
+
 // Registration endpoint
 router.post('/register', async (req, res) => {
   try {

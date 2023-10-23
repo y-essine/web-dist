@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const cors = require('cors');
 
+const eurekaHelper = require('./eureka-helper');
+
 const app = express();
 const port = process.env.PORT || 9086;
 
@@ -21,8 +23,10 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 // Use authentication routes
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+eurekaHelper.registerWithEureka('microservice-auth', port);
