@@ -1,4 +1,7 @@
 version: '3.4'
+# define host ip here: my-ip : 172.28.16:18080
+
+
 services:
   nexus:
     image: sonatype/nexus3
@@ -95,62 +98,64 @@ services:
       - "9082:9082"
     restart: on-failure
     environment:
-      #overriding spring application.properties
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
-      - keycloak-client.server-url=http://172.28.93.16:18080/auth # use host name or ip of the host machine
+      - keycloak-client.server-url=http://172.28.93.16:18080/auth
     depends_on:
       - eureka-server
   microservice-reservation:
-    build: ./microservice-reservation
+    build: 
+      context: ./microservice-reservation
     ports:
-      - 9083:9083
-    image: reservation-service
+      - "9083:9083"
+    restart: on-failure
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
       - keycloak-client.server-url=http://172.28.93.16:18080/auth 
     depends_on:
       - eureka-server
   microservice-review:
-    build: ./microservice-review
+    build: 
+      context: ./microservice-review
     ports:
-      - 9084:9084
-    image: review-service
+      - "9084:9084"
+    restart: on-failure
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
       - keycloak-client.server-url=http://172.28.93.16:18080/auth
       - spring.datasource.url=jdbc:mysql://db-mysql:3306/carsharepro?serverTimezone=UTC
-      - spring.datasource.username=spring
-      - spring.datasource.password=spring
+      - spring.datasource.username=root
+      - spring.datasource.password=root
     depends_on:
       - db-mysql
       - eureka-server  
-  microservice-vehicules:
-    build: ./microservice-vehicules
+  microservice-vehicule:
+    build:
+      context: ./microservice-vehicule
     ports:
-      - 9085:9085
-    image: vehicules-service
+      - "9085:9085"
+    restart: on-failure
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
       - keycloak-client.server-url=http://172.28.93.16:18080/auth 
     depends_on:
       - eureka-server  
-  microservice-auth:
-    build:
-      context: ./microservice-auth
-    ports:
-      - 9086:9086
-    image: node-app-image
-    restart: on-failure
-    environment:
-      - MONGO_URI=mongodb+srv://inesmsallem:30101999@cluster0.friepyw.mongodb.net/
-      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
-      - keycloak-client.server-url=http://172.28.93.16:18080/auth 
-    depends_on:
-      - mongodb
+  # microservice-auth:
+  #   build:
+  #     context: ./microservice-auth
+  #   ports:
+  #     - 9086:9086
+  #   image: node-app-image
+  #   restart: on-failure
+  #   environment:
+  #     - MONGO_URI=mongodb+srv://inesmsallem:30101999@cluster0.friepyw.mongodb.net/
+  #     - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+  #     - keycloak-client.server-url=http://172.28.93.16:18080/auth 
+  #   depends_on:
+  #     - mongodb
   db-mysql:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: carsharepro         
+      MYSQL_DATABASE: carsharepro
       MYSQL_ROOT_PASSWORD: root
     ports:
      - "3306:3306"     
@@ -159,18 +164,18 @@ services:
     ports:
       - "27017:27017"
     restart: on-failure
-  front:
-    build:
-      context: ./frontend
-    image: my-front-app
-    ports:
-      - "3000:3000"
-    restart: on-failure
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
-      - keycloak-client.server-url=http://172.28.93.16:18080/auth 
-    depends_on:
-      - microservice-auth
+  # front:
+  #   build:
+  #     context: ./frontend
+  #   image: my-front-app
+  #   ports:
+  #     - "3000:3000"
+  #   restart: on-failure
+  #   environment:
+  #     - eureka.client.serviceUrl.defaultZone=http://eureka-server:9091/eureka/
+  #     - keycloak-client.server-url=http://172.28.93.16:18080/auth 
+  #   depends_on:
+  #     - microservice-auth
   
 volumes:
     postgres_data:

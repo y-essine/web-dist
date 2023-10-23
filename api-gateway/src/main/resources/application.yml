@@ -59,6 +59,27 @@ spring:
           filters:
             - TokenRelay=
             - RemoveRequestHeader=Cookie
+        - id: microservice-reservation
+          uri: lb://microservice-reservation
+          predicates:
+            - Path=/api/reservation/**
+          filters:
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
+        - id: microservice-review
+          uri: lb://microservice-review
+          predicates:
+            - Path=/api/review/**
+          filters:
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
+        - id: microservice-vehicule
+          uri: lb://microservice-vehicule
+          predicates:
+            - Path=/api/vehicule/**
+          filters:
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
 eureka:
   client:
     serviceUrl:

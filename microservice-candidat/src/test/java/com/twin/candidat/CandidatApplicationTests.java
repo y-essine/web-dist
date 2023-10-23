@@ -1,4 +1,4 @@
-package com.twin.candidat;
+package twin.microservice.candidat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
