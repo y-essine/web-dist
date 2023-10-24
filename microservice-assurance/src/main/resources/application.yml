@@ -1,7 +1,6 @@
 debug: false
 server:
-  port: 9081
-
+  port: 9097
 eureka:
   client:
     serviceUrl:
@@ -11,7 +10,7 @@ keycloak-client:
   realm:  spring-micro-main
 spring:
   application:
-    name: microservice-producer
+    name: microservice-assurance
   security:
     oauth2:
       client:
@@ -19,9 +18,9 @@ spring:
           keycloak:
             provider: keycloak
             client-id: spring-micro-producer
-            client-secret: 4362afba-b98d-499d-94fd-1f0766b0c9ba
+            client-secret: 4362afba-b98d-499d-94fd-1f0766b0c9bb
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:9081/login/oauth2/code/keycloak
+            redirect-uri: http://localhost:9083/login/oauth2/code/keycloak
             scope: openid
         provider:
           keycloak:
@@ -34,4 +33,17 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/certs
+  h2:
+  console:
+    enabled: true
+    path: /h2
+  datasource:
+    url: jdbc:h2:file:~/test
+    username: ms_candidat
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
 

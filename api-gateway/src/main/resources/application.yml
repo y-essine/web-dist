@@ -87,6 +87,13 @@ spring:
           filters:
             - TokenRelay=
             - RemoveRequestHeader=Cookie
+        - id: microservice-assurance
+          uri: lb://microservice-assurance
+          predicates:
+            - Path=/api/assurance/**
+          filters:
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
 eureka:
   client:
     serviceUrl:

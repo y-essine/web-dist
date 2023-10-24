@@ -1,3 +1,6 @@
+node_modules
+./nexus-server/nexus-data
+
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 

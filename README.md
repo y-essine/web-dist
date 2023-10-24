@@ -35,6 +35,7 @@ Restarti el docker desktop baadika 7el el terminal Ubuntu aal windows w ekteb do
 - badel el ips (normalement tal9ahom 10.0.0.7) eli fel docker-compose.yml bel ip edhika kima fel capture
 - `find . -name "mvnw" -exec chmod +x {} \;`
 ** el commande edhika taati write permissions lel scripts maven
+- `docker run -d -p 8081:8081 --name nexus -v ./nexus-server/nexus-data:/nexus-data -u 200:200 sonatype/nexus3`
 - `docker-compose up --build`
 
 i kahaw tokood testana barcha taw lin yrakah jawou baadika
