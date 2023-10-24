@@ -1,5 +1,8 @@
 package twin.microservice.reservation.controller;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.client.RestTemplate;
 import twin.microservice.reservation.entity.Reservation;
 import twin.microservice.reservation.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +11,64 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/reservation")
 public class ReservationRestAPI {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
     @Autowired
     private ReservationService reservationService;
 
+
+    @GetMapping("/getAllVehicules")
+    public List<Map<String, Object>> getAllVehicles() {
+        String apiUrl = "http://localhost:8080/api/vehicule/all";
+        ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+                apiUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+        );
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        } else {
+            return Collections.emptyList();
+        }
+    }
     @GetMapping("/all")
     public List<Reservation> getReservations() {
         return reservationService.getAllReservations();
     }
+
+
+    @GetMapping("/reservedVehicules")
+    public List<Reservation> getReservedVehicules() {
+        List<Reservation> reservations = reservationService.getAllReservations();
+
+        List<Map<String, Object>> allVehicles = getAllVehicles();
+
+        List<Reservation> reservedVehicules = new ArrayList<>();
+
+        for (Reservation reservation : reservations) {
+            int reservationVehiculeId = reservation.getIdVehicule();
+            for (Map<String, Object> vehicule : allVehicles) {
+                int vehiculeId = (int) vehicule.get("id");
+                if (reservationVehiculeId == vehiculeId) {
+                    reservedVehicules.add(reservation);
+                    break;
+                }
+            }
+        }
+        return reservedVehicules;
+    }
+
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
