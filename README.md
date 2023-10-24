@@ -33,8 +33,7 @@ Restarti el docker desktop baadika 7el el terminal Ubuntu aal windows w ekteb do
 - tcopi el address eli fel terminal hayka fel capture
 - `code .`
 - badel el ips (normalement tal9ahom 10.0.0.7) eli fel docker-compose.yml bel ip edhika kima fel capture
-- `find . -name "mvnw" -exec chmod +x {} \;`
-** el commande edhika taati write permissions lel scripts maven
+- `sudo chown -R 200:200 /nexus-data`
 - `docker-compose up -d nexus --build`
 - Wait for nexus to startup
 - `docker-compose up --build`

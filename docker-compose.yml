@@ -8,7 +8,7 @@ services:
     container_name: nexus
     user: "200:200"  # Specify the user and group IDs for the Nexus process
     volumes:
-      - ./nexus-server/nexus-data:/nexus-data
+      - ./nexus-data:/nexus-data
     command: ["sh", "-c", "chown -R 200:200 /nexus-data && exec /opt/sonatype/nexus/bin/nexus run"]
   api-gateway:
     build:
