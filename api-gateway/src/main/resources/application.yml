@@ -38,20 +38,6 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: microservice-consumer
-          uri: lb://microservice-consumer
-          predicates:
-            - Path=/api/consume/**
-          filters:
-            - TokenRelay=
-            - RemoveRequestHeader=Cookie
-        - id: microservice-producer
-          uri: lb://microservice-producer
-          predicates:
-            - Path=/api/produce/**
-          filters:
-            - TokenRelay=
-            - RemoveRequestHeader=Cookie
         - id: microservice-candidat
           uri: lb://microservice-candidat
           predicates:
@@ -93,8 +79,3 @@ eureka:
       defaultZone: http://localhost:9091/eureka/
 
 
-#zuul:
-#  routes:
-#    microservice-consumer:
-#      serviceId: microservice-consumer
-#      path: /api/consume/**

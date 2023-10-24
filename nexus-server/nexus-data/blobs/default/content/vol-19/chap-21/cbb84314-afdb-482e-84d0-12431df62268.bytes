@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.netflix.servo</groupId>
+  <artifactId>servo-core</artifactId>
+  <version>0.12.21</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>compile</scope>
+      <version>1.7.25</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <scope>compile</scope>
+      <version>19.0</version>
+    </dependency>
+  </dependencies>
+  <name>servo-core</name>
+  <description>servo-core</description>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>netflixgithub</id>
+      <name>Netflix Open Source Development</name>
+      <email>netflixoss@netflix.com</email>
+    </developer>
+  </developers>
+  <properties>
+    <nebula_Manifest_Version>1.0</nebula_Manifest_Version>
+    <nebula_Implementation_Title>com.netflix.servo#servo-core;0.12.21</nebula_Implementation_Title>
+    <nebula_Implementation_Version>0.12.21</nebula_Implementation_Version>
+    <nebula_Built_Status>integration</nebula_Built_Status>
+    <nebula_Built_By>travis</nebula_Built_By>
+    <nebula_Built_OS>Linux</nebula_Built_OS>
+    <nebula_Build_Date>2018-03-28_15:00:00</nebula_Build_Date>
+    <nebula_Gradle_Version>4.4</nebula_Gradle_Version>
+    <nebula_Module_Owner>netflixoss@netflix.com</nebula_Module_Owner>
+    <nebula_Module_Email>netflixoss@netflix.com</nebula_Module_Email>
+    <nebula_Module_Source>/servo-core</nebula_Module_Source>
+    <nebula_Module_Origin>https://github.com/Netflix/servo.git</nebula_Module_Origin>
+    <nebula_Change>710a42e</nebula_Change>
+    <nebula_Branch>710a42e98703f8f3973ab97a0c403a6b617549c5</nebula_Branch>
+    <nebula_Build_Host>travis-job-netflix-servo-359402841.travisci.net</nebula_Build_Host>
+    <nebula_Build_Job>Netflix/servo</nebula_Build_Job>
+    <nebula_Build_Number>185</nebula_Build_Number>
+    <nebula_Build_Id>359402835</nebula_Build_Id>
+    <nebula_Created_By>1.8.0_151-b12 (Oracle Corporation)</nebula_Created_By>
+    <nebula_Build_Java_Version>1.8.0_151</nebula_Build_Java_Version>
+    <nebula_X_Compile_Target_JDK>1.8</nebula_X_Compile_Target_JDK>
+    <nebula_X_Compile_Source_JDK>1.8</nebula_X_Compile_Source_JDK>
+  </properties>
+  <url>https://github.com/Netflix/servo</url>
+  <scm>
+    <url>https://github.com/Netflix/servo.git</url>
+  </scm>
+</project>

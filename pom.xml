@@ -14,8 +14,6 @@
   <modules>
     <module>api-gateway</module>
     <module>eureka-server</module>
-    <module>microservice-consumer</module>
-    <module>microservice-producer</module>
   </modules>
 
 

@@ -2,7 +2,7 @@
   <mirrors>
     <mirror>
       <id>nexus</id>
-      <url>http://172.28.93.16:8081/repository/maven-public/</url>
+      <url>http://172.30.246.109:8081/repository/maven-public/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
@@ -13,13 +13,13 @@
       <repositories>
         <repository>
           <id>central</id>
-          <url>http://172.28.93.16:8081/repository/maven-central/</url>
+          <url>http://172.30.246.109:8081/repository/maven-central/</url>
         </repository>
       </repositories>
       <pluginRepositories>
         <pluginRepository>
           <id>central</id>
-          <url>http://172.28.93.16:8081/repository/maven-central/</url>
+          <url>http://172.30.246.109:8081/repository/maven-central/</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>

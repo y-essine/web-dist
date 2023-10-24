@@ -39,7 +39,7 @@ spring:
     enabled: true
     path: /h2
   datasource:
-    url: jdbc:mysql://172.28.93.16:3306/carsharepro?serverTimezone=UTC
+    url: jdbc:mysql://172.30.246.109:3306/carsharepro?serverTimezone=UTC
     username: root
     password: root
   jpa:

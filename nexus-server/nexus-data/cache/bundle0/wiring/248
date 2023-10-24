@@ -1,0 +1,6 @@
+osgi.wiring.package; (osgi.wiring.package=org.osgi.framework)
+0; version=1.9.0
+osgi.ee; (&(osgi.ee=JavaSE)(version=1.8))
+0; version=[1.0.0, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.8.0]
+osgi.native; (|(&(osgi.native.osname~=aix)(osgi.native.processor~=ppc64))(&(|(osgi.native.osname~=macos)(osgi.native.osname~=macosx))(osgi.native.processor~=x86_64))(&(|(osgi.native.osname~=macos)(osgi.native.osname~=macosx))(osgi.native.processor~=aarch64))(&(osgi.native.osname~=freebsd)(osgi.native.processor~=amd64))(&(osgi.native.osname~=freebsd)(osgi.native.processor~=i386))(&(osgi.native.osname~=linux)(osgi.native.processor~=aarch64))(&(osgi.native.osname~=linux)(osgi.native.processor~=amd64))(&(osgi.native.osname~=linux)(osgi.native.processor~=arm))(&(osgi.native.osname~=linux)(osgi.native.processor~=i386))(&(osgi.native.osname~=linux)(osgi.native.processor~=mips64))(&(osgi.native.osname~=linux)(osgi.native.processor~=ppc64))(&(osgi.native.osname~=linux)(osgi.native.processor~=ppc64le))(&(osgi.native.osname~=linux)(osgi.native.processor~=s390x))(&(osgi.native.osname~=win32)(osgi.native.processor~=amd64))(&(osgi.native.osname~=win32)(osgi.native.processor~=x86)))
+0

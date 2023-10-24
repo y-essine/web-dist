@@ -1,0 +1,6 @@
+osgi.wiring.package; (&(osgi.wiring.package=javax.interceptor)(version>=1.2.0))
+113; version=1.2.0
+osgi.wiring.package; (osgi.wiring.package=javax.inject)
+11; version=1.0.0
+osgi.wiring.package; (&(osgi.wiring.package=javax.el)(version>=2.2.0))
+75; version=3.0.4
