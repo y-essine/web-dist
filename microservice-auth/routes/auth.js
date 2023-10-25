@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 // Registration endpoint
 router.post('/register', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, username, password } = req.body;
 
         // login and get token to use in register
         const optionsLogin = {
@@ -81,13 +81,13 @@ router.post('/register', async (req, res) => {
             if (!token) {
                 return res.status(400).json({ message: 'Login error' });
             }
-            return res.status(200).json({message: "registered successfully"} );
         }).catch(function (error) {
-            console.error(error);
+            return res.status(400).json({ message: error  });
         });
 
         const data = {
             "enabled": true,
+            "email": email,
             "username": username,
             "credentials": [{
                 "type": password,
@@ -105,14 +105,14 @@ router.post('/register', async (req, res) => {
 
         await axios.request(options).then(function (response) {
             if (response.status != 201) {
-                return res.status(400).json({ message: 'Register error' });
+                return res.status(400).json({ message: response.error || 'Register error' });
             }
-            return res.status(200).json(response.data || "Failed to fetch" );
+            return res.status(200).json(response.data || {message: "Registered successfully"} );
         }).catch(function (error) {
-            console.error(error);
+            return res.status(400).json({ message: error  });
         });
     } catch (error) {
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: error });
     }
 });
 

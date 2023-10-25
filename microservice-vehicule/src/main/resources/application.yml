@@ -11,7 +11,7 @@ keycloak-client:
   realm:  spring-micro-main
 spring:
   application:
-    name: microservice-vehicules
+    name: microservice-vehicule
   security:
     oauth2:
       client:

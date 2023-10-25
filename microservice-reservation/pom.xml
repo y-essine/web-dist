@@ -72,6 +72,12 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>io.joshworks.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

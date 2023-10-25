@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.net.http.*;
 
 @RestController
 @RequestMapping(value = "/api/reservation")
@@ -28,14 +29,16 @@ public class ReservationRestAPI {
 
 
     @GetMapping("/getAllVehicules")
-    public List<Map<String, Object>> getAllVehicles() {
+    public List<Map<String, Object>> getAllVehicles(@RequestHeader("Authorization") String authorizationHeader) {
         String apiUrl = "http://localhost:8080/api/vehicule/all";
-        ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
-                apiUrl,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<Map<String, Object>>>() {}
-        );
+        HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("http://localhost:8080/api/vehicule/all"))
+    .header("Authorization", "Bearer " + authorizationHeader)
+    .method("GET", HttpRequest.BodyPublishers.noBody())
+    .build();
+HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
+
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         } else {
