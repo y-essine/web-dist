@@ -22,7 +22,15 @@ public class Reservation implements Serializable{
 	private Double price;
 	private Boolean state;
 	private int idClient;
-    private int idAnnonce;
+	private int idVehicule;
+
+	public int getIdVehicule() {
+		return idVehicule;
+	}
+
+	public void setIdVehicule(int idVehicule) {
+		this.idVehicule = idVehicule;
+	}
 
 	public Date getStartDate() {
 		return startDate;
