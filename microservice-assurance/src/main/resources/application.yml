@@ -1,6 +1,6 @@
 debug: false
 server:
-  port: 9097
+  port: 9087
 eureka:
   client:
     serviceUrl:

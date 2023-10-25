@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const eurekaHelper = require('./eureka-helper');
 
@@ -15,6 +16,7 @@ const port = process.env.PORT || 9086;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan('dev'));
 
 // Connect to MongoDB (make sure MongoDB is running)
 mongoose.connect(process.env.MONGO_URI, {

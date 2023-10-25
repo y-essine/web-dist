@@ -30,6 +30,7 @@ services:
     restart: on-failure
   keycloak:
     image: jboss/keycloak:11.0.0
+    container_name: keycloak-server
     volumes:
       - ./keycloak-server/realm-export.json:/tmp/keycloak/config/realm-export.json
     environment:

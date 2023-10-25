@@ -21,6 +21,7 @@ public class Reservation implements Serializable{
 	private Double price;
 	private Boolean state;
 	private int idClient;
+    private int idAnnonce;
 
 	public Date getStartDate() {
 		return startDate;
