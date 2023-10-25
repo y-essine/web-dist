@@ -1,5 +1,6 @@
 package twin.microservice.reservation.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +11,7 @@ import java.util.Date;
 @Entity
 public class Reservation implements Serializable{
 	private static final long serialVersionUID = 6711457437559348053L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -21,7 +22,15 @@ public class Reservation implements Serializable{
 	private Double price;
 	private Boolean state;
 	private int idClient;
-    private int idAnnonce;
+	private int idVehicule;
+
+	public int getIdVehicule() {
+		return idVehicule;
+	}
+
+	public void setIdVehicule(int idVehicule) {
+		this.idVehicule = idVehicule;
+	}
 
 	public Date getStartDate() {
 		return startDate;
