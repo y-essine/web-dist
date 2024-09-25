@@ -1,9 +1,5 @@
 # web-dist
 WEB DIST PROJECT 5TWIN3
-## 👺 UPDATE ! !
-Our link:
-[GitHub Link](https://github.com/y-essine/web-dist)
-(old: https://github.com/liqili/spring-microservice-oauth2-keycloak-starter)
 _______________________________________________
 
 ## 👌 TUTORIAL
